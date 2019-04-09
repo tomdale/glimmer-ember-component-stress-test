@@ -1,5 +1,49 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+<h1>Results</h1>
+<table>
+  <tbody>
+    {{#each this.timings.results as |result|}}
+      <tr>
+        <td>{{result.label}}</td><td>{{if result.delta result.delta "–"}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
 
-{{outlet}}
+<h1>Test</h1>
+<MarkTime @label="start" />
+<div class="test-region">
+  <h2>Ember warmup</h2>
+  <ul>
+    {{#each this.warmup as |item|}}
+      {{ember-component item=item}}
+    {{/each}}
+  </ul>
+</div>
+<MarkTime @label="ember-warmup" />
+<div class="test-region">
+  <h2>Glimmer warmup</h2>
+  <ul>
+    {{#each this.warmup as |item|}}
+      {{glimmer-component item=item}}
+    {{/each}}
+  </ul>
+</div>
+<MarkTime @label="glimmer-warmup" />
+<div class="test-region">
+  <h2>Ember</h2>
+  <ul>
+    {{#each this.items as |item|}}
+      {{ember-component item=item}}
+    {{/each}}
+  </ul>
+</div>
+<MarkTime @label="ember" />
+<div class="test-region">
+  <h2>Glimmer</h2>
+  <ul>
+    {{#each this.items as |item|}}
+      {{glimmer-component item=item}}
+    {{/each}}
+  </ul>
+</div>
+<MarkTime @label="glimmer" />
